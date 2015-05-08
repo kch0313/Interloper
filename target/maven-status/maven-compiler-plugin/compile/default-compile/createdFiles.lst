@@ -1,9 +1,0 @@
-com/citc/messenger/interloper/model/ActivitiEntity.class
-com/citc/messenger/interloper/model/ProcessInstance.class
-com/citc/messenger/interloper/InterloperApplication.class
-com/citc/messenger/interloper/service/ActivitiRestAPI.class
-com/citc/messenger/interloper/ServletInitializer.class
-com/citc/messenger/interloper/controller/KillEndPoint.class
-com/citc/messenger/interloper/service/ActvitiHttpUtils.class
-com/citc/messenger/interloper/model/ProcessInstanceDetail.class
-com/citc/messenger/interloper/service/ActivitiJRuntimeProxyImpl.class

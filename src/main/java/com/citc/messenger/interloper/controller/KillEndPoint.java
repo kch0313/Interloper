@@ -5,31 +5,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.citc.messenger.interloper.model.ActivitiEntity;
-import com.citc.messenger.interloper.model.ProcessInstance;
-import com.citc.messenger.interloper.service.ActivitiJRuntimeProxyImpl;
+import com.citc.messenger.interloper.amqp.ProcessListener;
 
 @RestController
 public class KillEndPoint {
 
 		@Autowired(required=true)
-		ActivitiJRuntimeProxyImpl runtimeApi;
+		ProcessListener listener;
 	
 	    @RequestMapping("/killproc")
-	    public ActivitiEntity killproc(@RequestParam(value="id", defaultValue="0") Integer id) {
-
-	    	System.out.println("Trying to locate and kill Process instance " + id );
-	    	
-	    	ActivitiEntity instance= (ActivitiEntity) runtimeApi.findProcessById(id);
-	    	if(instance != null){
-	    		System.out.println("*** Process ***");
-	    		ProcessInstance processInstance= (ProcessInstance)instance;
-	    		System.out.println(processInstance.getData().get(0).getProcessDefinitionId());
-	    		runtimeApi.terminateProcessById(instance);
-	    	}
-	    	
-	    	
-	        return instance;
+	    public String killproc(@RequestParam(value="id", defaultValue="0") Integer id) {
+	    	listener.sendMessage(id);
+	        return String.format("{status:200, description:message recieved to kill process id %d}", id);
 	    } 
 
 }

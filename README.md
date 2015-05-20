@@ -5,9 +5,9 @@ This project is the Spring REST API for deleting Activiti process instances that
 
 ### Prerequisites
 
-MySQL
-Activiti 5.1.17
-RabbitMQ 
+* MySQL
+* Activiti 5.1.17
+* RabbitMQ - https://www.rabbitmq.com/download.html
 
 ### Run the Application
 

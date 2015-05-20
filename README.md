@@ -7,11 +7,14 @@ This project is the Spring REST API for deleting Activiti process instances that
 
 MySQL
 Activiti 5.1.17
+RabbitMQ 
 
 ### Run the Application
 
 Make sure the application properties point to a Valid MySQL database.  The database is not actually used
 at this point, but put there as placeholder for future use.
+
+Ensure that Rabbit MQ is installed and running.  The application uses RabbitMQ to create an async request that can be handled and scaled beyond the capabilities of the web rest interface. 
 
 from the command line:
 mvn clean install -- builds the application
@@ -30,7 +33,7 @@ locate the id, in the case above it is:id":"15016
 
 Invoke the interloper:
 http://localhost:8081/killproc?id=15016
-If successful you will see the JSON of the object killed.
+If the request was successfully handed off to the queue you will see the a status code of 200 Success.
 
 ### Debugging
 mvn spring-boot:run -Drun.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
